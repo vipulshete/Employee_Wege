@@ -5,6 +5,7 @@ public class EmployeeWege {
 	public static void main(String[] args) {
 		System.out.println("Welcome to employee wege computation");
 		int noOfHoursPerDay = 8;
+		int noOfHoursPerDayPartTime = 4;
 		int wegePerHours = 20;
 		
 		// employee present or absent //			
@@ -13,9 +14,16 @@ public class EmployeeWege {
 		double randomCheck = Math.floor(Math.random() * 10) % 2;
 		                         
 		if(attandance == randomCheck) {
-			System.out.println("Employee is present");
-			int totalWege = noOfHoursPerDay * wegePerHours;
-			System.out.println("Wege per day is " + totalWege);
+			if(noOfHoursPerDay == 8) {
+				int totalWege = noOfHoursPerDay * wegePerHours;
+				System.out.println("Employee is present");
+				System.out.println("Wege per day is " + totalWege);
+			} 
+			if (noOfHoursPerDayPartTime == 4) {
+				int partTimeWege = noOfHoursPerDayPartTime * wegePerHours;
+				System.out.println("Employee is present part time");
+				System.out.println("Part time Wege is " + partTimeWege);
+			} 
 		} else {
 			System.out.println("Employee is Absent");
 		}

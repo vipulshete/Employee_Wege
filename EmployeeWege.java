@@ -3,7 +3,13 @@ package com.bridgelab.day4;
 public class EmployeeWege {
 
 	public static void main(String[] args) {
+		
 		System.out.println("Welcome to employee wege computation");
+		EmployeeWege employeeWege = new EmployeeWege();
+		employeeWege.employee();
+	}
+		
+	void employee() {
 		int noOfHoursPerDay = 8;
 		int noOfHoursPerDayPartTime = 4;
 		int wegePerHours = 20;

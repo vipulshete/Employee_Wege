@@ -1,62 +1,68 @@
 package com.bridgelab.day4;
 
 public class EmployeeWege {
-
-	public static void main(String[] args) {
 		
-		System.out.println("Welcome to employee wege computation");
-		EmployeeWege  bigBazar=new EmployeeWege("BigBazar",20,2,10);
-		System.out.println("Total Employee Wage for Company "+ bigBazar.company+" is: "+bigBazar.computeEmpWage());
-		//created object for company realince 
-		EmployeeWege tata=new EmployeeWege("tata",10,2,20);
-		System.out.println("Total Employee Wage for Company "+ tata.company+" is: "+tata.computeEmpWage());
-		}
-
-		//constants
-	    private static final int IS_PART_TIME=1; 
-		private static final int IS_FULL_TIME=2; 
+		private String company;
+		private int wagePerhour;
+		private int working_DayperMonth=0;
+		private int fullDayhour;
+		private int totalEmpWage;
 		
-		private final String company;
-		private final int empRatePerHour; 
-		private final int maxHoursPerMonth; 
-		private final int numOfWorkingDays;
-		
-		
-		public EmployeeWege(String company, int empRatePerHour, int maxHoursPerMonth, int numOfWorkingDays)
-	        {
-		// constructor
+		public EmployeeWege(String company,int wagePerhour,int working_DayperMonth,int fullDayhour ) {
 			this.company = company;
-			this.empRatePerHour = empRatePerHour;
-			this.maxHoursPerMonth = maxHoursPerMonth;
-			this.numOfWorkingDays = numOfWorkingDays;
+			this.wagePerhour = wagePerhour;
+			this.working_DayperMonth = working_DayperMonth;
+			this.fullDayhour = fullDayhour;
 		}
-
-	         private int computeEmpWage() 
-	         	//decleartion 
-	          {
-			int empHrs=0, totalEmpHrs=0,totalWorkingDays=0;
-			// check the condition that max working hrs per month and no.of workong days
-
-			while(totalEmpHrs <= maxHoursPerMonth && totalWorkingDays < numOfWorkingDays)
-	                {
-				 totalWorkingDays++; 
-				 int attendance=(int)(Math.random()*3); 
-				 switch(attendance) 
-				 { 
-				 case IS_FULL_TIME:empHrs=8;
-				 break; 
-				 case IS_PART_TIME:empHrs=4;
-				 break;
-				 default:empHrs=0; 
-				 break; 
-				 } 
-				 totalEmpHrs=(totalEmpHrs+empHrs); 
-				 System.out.println("Days= "+ totalWorkingDays+ " Emp Hr: "+empHrs);
-			}
-				
-				 
-			return totalEmpHrs*empRatePerHour;
+		
+		
+		public void computeEmpWage() {
+			  int totalWorkinghour = 0;
+			  int days = 0; 
+			  System.out.println(company);
+		      while (totalWorkinghour <= 100 && days <20 ){
+				 days = days + 1;
+				 int attendance = (int)(Math.random() *10 )%2;
+				 switch(attendance){
+					
+					case 0 : calculateEmployeeWage();
+			    	         break;
+					
+					case 1 : int partTimehour = fullDayhour / 2;
+					         int partTimeWage = partTimehour * wagePerhour * working_DayperMonth;
+					         System.out.println("Wage Per Hour\t:"+ wagePerhour +
+					                            "\nWorking Days \t:"+ working_DayperMonth +
+					                            "\nWorking Hour \t:"+ partTimehour + 
+					                            "\nPartime Employee wage is : "+ partTimeWage);
+			    
+			    	         break;
+			    	        
+					default: System.out.println("Employee Wage = 0");        
+			       }
+				 totalWorkinghour = totalWorkinghour + 1;
+				 System.out.println();
+		       }
+		      int totalEmpWage  = totalWorkinghour * wagePerhour * working_DayperMonth;
+		      System.out.println("Total Full time Employee Wage for "+ company+" is:" + totalEmpWage);
+		}
+		
+		
+		public void calculateEmployeeWage() {
+			int dailyWage = wagePerhour * fullDayhour * working_DayperMonth;
+			System.out.println("Wage Per Hour\t:"+ wagePerhour +
+					           "\nWorking Days \t:"+ working_DayperMonth +
+					           "\nWorking Hour \t:"+ fullDayhour + 
+					           "\nEmployee wage is : "+ dailyWage);
+		}
+		
+		public static void main(String[] args) {
 			
+			System.out.println(" Welcome to Employee Wage Computation ");
+			EmployeeWege amazon = new EmployeeWege("Amazon", 200, 2, 20);
+		amazon.computeEmpWage();
+		
+		EmployeeWege flipkart = new EmployeeWege("Flipkart",100,4,20);
+			flipkart.computeEmpWage();
 		}
 
 }

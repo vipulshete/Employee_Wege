@@ -5,43 +5,59 @@ public class EmployeeWege {
 	public static void main(String[] args) {
 		
 		System.out.println("Welcome to employee wege computation");
-		EmployeeWege employeeWege = new EmployeeWege();
-		employeeWege.employee();
-	}
-		
-	void employee() {
-		int noOfHoursPerDay = 8;
-		int noOfHoursPerDayPartTime = 4;
-		int wegePerHours = 20;
-		int daysInMonth = 20;
-		
-		int attandance = 1;
-		double randomCheck = Math.floor(Math.random() * 10) % 2;
-		
-		// employee present or absent //	
-		if(attandance == randomCheck) {
-			
-			if(noOfHoursPerDay == 8) {
-				int totalWege = noOfHoursPerDay * wegePerHours;
-				System.out.println("Employee is present");
-				System.out.println("Wege per day is " + totalWege);
-			} 
-			if (noOfHoursPerDayPartTime == 4) {
-				int partTimeWege = noOfHoursPerDayPartTime * wegePerHours;
-				System.out.println("Employee is present part time");
-				System.out.println("Part time Wege is " + partTimeWege);
-			} 
-			if(daysInMonth == 20) {
-				int monthWege = noOfHoursPerDay * wegePerHours * daysInMonth;
-				System.out.println("Employee is present full time");
-				System.out.println("Wege of month is " + monthWege);
-			        // (noOfHoursPerDay * wedgePerHours);
-			}
-		} else {
-			System.out.println("Employee is Absent");
+		EmployeeWege  bigBazar=new EmployeeWege("BigBazar",20,2,10);
+		System.out.println("Total Employee Wage for Company "+ bigBazar.company+" is: "+bigBazar.computeEmpWage());
+		//created object for company realince 
+		EmployeeWege tata=new EmployeeWege("tata",10,2,20);
+		System.out.println("Total Employee Wage for Company "+ tata.company+" is: "+tata.computeEmpWage());
 		}
+
+		//constants
+	    private static final int IS_PART_TIME=1; 
+		private static final int IS_FULL_TIME=2; 
 		
-	}
+		private final String company;
+		private final int empRatePerHour; 
+		private final int maxHoursPerMonth; 
+		private final int numOfWorkingDays;
+		
+		
+		public EmployeeWege(String company, int empRatePerHour, int maxHoursPerMonth, int numOfWorkingDays)
+	        {
+		// constructor
+			this.company = company;
+			this.empRatePerHour = empRatePerHour;
+			this.maxHoursPerMonth = maxHoursPerMonth;
+			this.numOfWorkingDays = numOfWorkingDays;
+		}
+
+	         private int computeEmpWage() 
+	         	//decleartion 
+	          {
+			int empHrs=0, totalEmpHrs=0,totalWorkingDays=0;
+			// check the condition that max working hrs per month and no.of workong days
+
+			while(totalEmpHrs <= maxHoursPerMonth && totalWorkingDays < numOfWorkingDays)
+	                {
+				 totalWorkingDays++; 
+				 int attendance=(int)(Math.random()*3); 
+				 switch(attendance) 
+				 { 
+				 case IS_FULL_TIME:empHrs=8;
+				 break; 
+				 case IS_PART_TIME:empHrs=4;
+				 break;
+				 default:empHrs=0; 
+				 break; 
+				 } 
+				 totalEmpHrs=(totalEmpHrs+empHrs); 
+				 System.out.println("Days= "+ totalWorkingDays+ " Emp Hr: "+empHrs);
+			}
+				
+				 
+			return totalEmpHrs*empRatePerHour;
+			
+		}
 
 }
 
